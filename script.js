@@ -8,7 +8,12 @@ function makePageForEpisodes(episodeList) {
 
   rootElem.textContent = '';
 
-  rootElem.textContent = `Got ${episodeList.length} episode(s)`;
+  // Create the control row with select, search and episode count
+  const controlRow = document.createElement('div');
+  controlRow.classList.add('control-row'); // Added the control-row class
+
+  const episodeSelector = document.createElement('select');
+  episodeSelector.classList.add('episode-selector');
 
   const searchWrapper = document.createElement('div');
   searchWrapper.classList.add('search-wrapper');
@@ -30,20 +35,22 @@ function makePageForEpisodes(episodeList) {
   form.appendChild(button);
   searchWrapper.appendChild(form);
 
-  rootElem.appendChild(searchWrapper);
+  const episodeCountText = document.createElement('span');
+  episodeCountText.classList.add('episode-count'); // Class for styling
+  episodeCountText.style.fontSize = '1rem';
+  episodeCountText.style.color = '#333';
 
+  controlRow.appendChild(episodeSelector);
+  controlRow.appendChild(searchWrapper);
+  controlRow.appendChild(episodeCountText);
 
-  const episodeSelector = document.createElement('select');
-  episodeSelector.classList.add('episode-selector');
-  rootElem.appendChild(episodeSelector);
-
+  rootElem.appendChild(controlRow);
   const episodeContainer = document.createElement('div');
   episodeContainer.classList.add('episode-container');
   rootElem.appendChild(episodeContainer);
 
   function renderEpisodes(episodes) {
-    episodeContainer.innerHTML = ''; 
-
+    episodeContainer.innerHTML = '';
     if (episodes.length === 0) {
       episodeContainer.innerHTML = '<p>No episodes match your search.</p>';
       return;
@@ -71,7 +78,6 @@ function makePageForEpisodes(episodeList) {
 
   function populateSelector(episodes) {
     episodeSelector.innerHTML = '';
-
     const defaultOption = document.createElement('option');
     defaultOption.textContent = 'Select an Episode';
     defaultOption.value = '';
@@ -86,26 +92,23 @@ function makePageForEpisodes(episodeList) {
     });
   }
 
-
   episodeSelector.addEventListener('change', (event) => {
     const selectedEpisodeId = event.target.value;
     if (selectedEpisodeId === '') {
-  
       renderEpisodes(episodeList);
     } else {
       const selectedEpisode = episodeList.find((episode) => episode.id.toString() === selectedEpisodeId);
       renderEpisodes([selectedEpisode]);
     }
-    rootElem.firstChild.textContent = `Got ${selectedEpisodeId === '' ? episodeList.length : 1} episode(s)`;
+    episodeCountText.textContent = `Got ${selectedEpisodeId === '' ? episodeList.length : 1} episode(s)`;
   });
-
 
   renderEpisodes(episodeList);
   populateSelector(episodeList);
+  episodeCountText.textContent = `Got ${episodeList.length} episode(s)`;
 
   input.addEventListener('input', (event) => {
     const searchTerm = event.target.value.toLowerCase();
-
     const filteredEpisodes = episodeList.filter((episode) => {
       const combinedContent = `${episode.name} ${episode.summary || ''}`.toLowerCase();
       return combinedContent.includes(searchTerm);
@@ -113,16 +116,16 @@ function makePageForEpisodes(episodeList) {
 
     renderEpisodes(filteredEpisodes);
     populateSelector(filteredEpisodes);
-
-    rootElem.firstChild.textContent = `Got ${filteredEpisodes.length} episode(s)`;
+    episodeCountText.textContent = `Got ${filteredEpisodes.length} episode(s)`;
   });
 
   button.addEventListener('click', () => {
     input.value = '';
     renderEpisodes(episodeList);
     populateSelector(episodeList);
-    rootElem.firstChild.textContent = `Got ${episodeList.length} episode(s)`;
+    episodeCountText.textContent = `Got ${episodeList.length} episode(s)`;
   });
 }
 
 window.onload = setup;
+``

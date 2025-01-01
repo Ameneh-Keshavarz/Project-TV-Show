@@ -1,6 +1,7 @@
 #root {
   color: red;
 }
+
 body {
   font-family: Arial, sans-serif;
   background-color: #f4f4f9;
@@ -20,11 +21,101 @@ body {
   max-width: 1200px;
 }
 
+.control-row {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.search-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.search-box {
+  width: 80%;
+  height: 40px;
+  /* Set a fixed height for search box */
+  padding: 10px;
+  font-size: 1rem;
+  border-radius: 15px;
+  border: 1px solid #ccc;
+  outline: 0;
+  box-sizing: border-box;
+}
+
+.search-box:focus {
+  box-shadow: 0 0 15px 5px #b0e0ee;
+  border: 2px solid #bebede;
+}
+
+.episode-selector {
+  height: 40px;
+  /* Same height as search box */
+  padding: 10px;
+  font-size: 1rem;
+  border-radius: 15px;
+  border: 1px solid #ccc;
+  outline: 0;
+  box-sizing: border-box;
+  width: 220px;
+  /* Increased width for select */
+  background-color: #f9f9f9;
+}
+
+.close-icon {
+  border: 1px solid transparent;
+  background-color: transparent;
+  display: inline-block;
+  vertical-align: middle;
+  outline: 0;
+  cursor: pointer;
+  padding: 10px;
+  position: absolute;
+  right: 10px;
+  /* Close button aligned with input */
+  top: 50%;
+  transform: translateY(-50%);
+  /* Vertically center */
+}
+
+.close-icon:after {
+  content: "X";
+  display: block;
+  width: 15px;
+  height: 15px;
+  position: absolute;
+  background-color: #fa9595;
+  z-index: 1;
+  right: 0;
+  top: 0;
+  margin: auto;
+  padding: 2px;
+  border-radius: 50%;
+  text-align: center;
+  color: white;
+  font-weight: normal;
+  font-size: 12px;
+  box-shadow: 0 0 2px #e50f0f;
+  cursor: pointer;
+}
+
+.episode-count {
+  font-size: 1rem;
+  color: #333;
+  margin-left: 10px;
+  display: inline-block;
+}
+
 .episode-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   padding: 0 20px;
+  width: 100%;
 }
 
 .episode-card {
@@ -91,56 +182,4 @@ body {
   .episode-card {
     width: 90%;
   }
-}
-
-.search-box,.close-icon,.search-wrapper {
-	position: relative;
-	padding: 10px;
-}
-.search-wrapper {
-	width: 500px;
-	margin: auto;
-	margin-top: 50px;
-}
-.search-box {
-	width: 80%;
-	border: 1px solid #ccc;
-  outline: 0;
-  border-radius: 15px;
-}
-.search-box:focus {
-	box-shadow: 0 0 15px 5px #b0e0ee;
-	border: 2px solid #bebede;
-}
-.close-icon {
-	border:1px solid transparent;
-	background-color: transparent;
-	display: inline-block;
-	vertical-align: middle;
-  outline: 0;
-  cursor: pointer;
-}
-.close-icon:after {
-	content: "X";
-	display: block;
-	width: 15px;
-	height: 15px;
-	position: absolute;
-	background-color: #FA9595;
-	z-index:1;
-	right: 35px;
-	top: 0;
-	bottom: 0;
-	margin: auto;
-	padding: 2px;
-	border-radius: 50%;
-	text-align: center;
-	color: white;
-	font-weight: normal;
-	font-size: 12px;
-	box-shadow: 0 0 2px #E50F0F;
-	cursor: pointer;
-}
-.search-box:not(:valid) ~ .close-icon {
-	display: none;
 }
