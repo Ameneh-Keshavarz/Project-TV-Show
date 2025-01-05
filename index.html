@@ -1,19 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TV Show Project | Ameneh Keshavarz (Ameneh-Keshavarz)</title>
-    <link href="style.css" rel="stylesheet" />
-    <link rel="icon" href="favicon.ico" type="image/x-icon" />
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TV Show Project | Armin Nouri</title>
+  <link href="style.css" rel="stylesheet" />
+  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+</head>
 
-  <body>
-    <div id="root"></div>
+<body>
+  <div id="root">
+    <!-- Show Search and Select Section -->
+    <div id="show-select-section">
+      <div class="search-select-container">
+        <select id="show-select">
+          <option value="">Select a Show</option>
+        </select>
+        <input type="text" id="search-input" placeholder="Search shows..." />
+        <span id="search-status"></span>
+        <span id="search-count-shows"></span>
 
-    <script src="episodes.js"></script>
-    <script src="script.js"></script>
-  </body>
+      </div>
+    </div>
+    <!-- Shows Listing Section -->
+    <div id="shows-listing" class="container"></div>
+
+    <!-- Episodes Section -->
+    <div id="episodes-section" style="display: none;">
+      <div class="search-select-container">
+        <button id="back-to-shows" style="display: none;">Back to Shows</button>
+        <select id="episode-select">
+          <option value="">All Episodes</option>
+        </select>
+        <input type="text" id="search-input-episodes" placeholder="Search episodes..." />
+        <span id="search-count">Example text</span>
+      </div>
+      <div class="episodes-container" id="episode-list"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
 </html>
->>>>>>> level-300
